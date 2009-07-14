@@ -9,11 +9,6 @@
 #import "AppDelegate.h"
 #import "ShowLayer.h"
 
-
-enum {
-	kTagBackgroundAtlasSpriteManager = 1
-};
-
 @implementation AppDelegate
 @synthesize window;
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
@@ -22,7 +17,6 @@ enum {
 	[window setUserInteractionEnabled:NO];
 	[window setMultipleTouchEnabled:NO];
 	
-	//[Director useFastDirector];
 	Director* ccDirector = [Director sharedDirector];
 	
 	//设置横向显示
@@ -31,8 +25,8 @@ enum {
 	[ccDirector setAnimationInterval:1.0f/60.0f];
 	[ccDirector attachInWindow:window];
 	
+	//主scene
 	Scene* mainScene = [Scene node];
-
 	//背景Layer
 	Layer* bgLayer = [Layer node];
 	

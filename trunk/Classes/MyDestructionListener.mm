@@ -13,13 +13,14 @@
 #import <Foundation/Foundation.h>
 
 void MyDestructionListener::SayGoodbye(b2Shape* shape){
-	NSLog(@"Goodby to shape:%e",shape);
+	//删除body的userdata
 	BodyUserData* userData = static_cast<BodyUserData*> (shape->GetBody()->GetUserData());
 	if (userData==nil)
 		return;
-	if (userData.sprite!=nil&&userData.spriteManager!=nil){
+	
+	if (userData.sprite!=nil&&userData.spriteManager!=nil)
 		[userData.spriteManager removeChild:userData.sprite cleanup:YES];
-		[userData release];
-	}
+	
+	[userData release];
 	shape->GetBody()->SetUserData(NULL);
 }

@@ -5,10 +5,11 @@
 //  Created by 黄文俊 on 09-6-20.
 //  本Demo借用的图片和音频归原作者所有
 //
+
 //所有墙壁的摩擦系数
 #define WALL_FRICTION 0.1f
-
 #define PTM_RATIO 32
+
 #include <set>
 #import "ShowLayer.h"
 #import "MyConstants.h"
@@ -385,7 +386,7 @@
 		worldRect.lowerBound.Set(-borderSize/PTM_RATIO,-borderSize/PTM_RATIO);
 		worldRect.upperBound.Set((screenSize.width+borderSize)/PTM_RATIO,(screenSize.height+borderSize)/PTM_RATIO);
 
-		b2Vec2 gravity(0.0f,-10.0f);//重力加速度，10牛
+		b2Vec2 gravity(0.0f,-10.0f);//重力加速度，10牛/千克
 		bool doSleep = true;
 		mWorld = new b2World(worldRect,gravity,doSleep);
 		{
@@ -530,7 +531,7 @@
 	//删除跳出范围的body
 	mBoundaryListener->RemoveViolatedBodiesFromWorld(mWorld);
 	
-	//更新所有sprite的位置和转动角度,如果body的状态是frozen，那么清除它
+	//更新所有sprite的位置和转动角度
 	b2Body* bodyList = mWorld->GetBodyList();
 	while (bodyList!=NULL){
 		b2Body* nextBody = bodyList->GetNext();
@@ -538,7 +539,7 @@
 		if (userData!=nil){
 			AtlasSprite* sprite = userData.sprite;
 			sprite.position = CGPointMake( bodyList->GetPosition().x * PTM_RATIO, bodyList->GetPosition().y * PTM_RATIO);
-			sprite.rotation = -1 * CC_RADIANS_TO_DEGREES(bodyList->GetAngle());//Box2D的转动方向时逆时针为正，cocos2d为顺时针为正，所以需要×-1
+			sprite.rotation = -1 * CC_RADIANS_TO_DEGREES(bodyList->GetAngle());//Box2D的转动方向时逆时针为正，cocos2d为顺时针为正，所以需要乘以-1
 		}
 		bodyList = nextBody;
 	}
