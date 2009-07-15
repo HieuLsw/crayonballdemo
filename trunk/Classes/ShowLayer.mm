@@ -322,7 +322,7 @@
 	jointDef.lowerAngle = -1*CC_DEGREES_TO_RADIANS(90.f);
 	jointDef.motorSpeed = 5.0f;
 	jointDef.enableMotor = true;
-	jointDef.maxMotorTorque = 2.5f;
+	jointDef.maxMotorTorque = 2.0f;
 	mWorld->CreateJoint(&jointDef);
 	
 	flipperSpt.position = ccp(x,y);
@@ -352,7 +352,7 @@
 	b2PolygonDef shapeDef;
 	shapeDef.friction = WALL_FRICTION;
 	shapeDef.vertexCount = 4;
-	shapeDef.density = 2.5f;
+	shapeDef.density = 2.0f;
 	shapeDef.vertices[0].Set(7.f/PTM_RATIO,9.5f/PTM_RATIO);
 	shapeDef.vertices[1].Set(-17.f/PTM_RATIO,9.5f/PTM_RATIO);
 	shapeDef.vertices[2].Set(-17.f/PTM_RATIO,9.f/PTM_RATIO);
