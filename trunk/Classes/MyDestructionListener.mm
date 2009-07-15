@@ -18,8 +18,10 @@ void MyDestructionListener::SayGoodbye(b2Shape* shape){
 	if (userData==nil)
 		return;
 	
-	if (userData.sprite!=nil&&userData.spriteManager!=nil)
+	if (userData.sprite!=nil&&userData.spriteManager!=nil) {
+		NSLog(@"destroy body");
 		[userData.spriteManager removeChild:userData.sprite cleanup:YES];
+	}
 	
 	[userData release];
 	shape->GetBody()->SetUserData(NULL);
